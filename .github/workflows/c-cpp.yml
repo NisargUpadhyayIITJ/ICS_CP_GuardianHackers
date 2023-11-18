@@ -17,11 +17,11 @@ jobs:
       run: gcc sample.c -o sample
     - name: run the code
       run: ./sample
-    # - name: configure
-    #   run: ./configure
-    # - name: make
-    #   run: make
-    # - name: make check
-    #   run: make check
-    # - name: make distcheck
-    #   run: make distcheck
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
