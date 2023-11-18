@@ -14,9 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: compile 
-      run: gcc sample.c -o sample
+      run: gcc ICfinalpro.c -o sample
     - name: run the code
-      run: ./sample
+      run: ./ICfinalpro
     - name: configure
       run: ./configure
     - name: make
