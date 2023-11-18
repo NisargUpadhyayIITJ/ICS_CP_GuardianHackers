@@ -6,6 +6,8 @@
 
 int prev_check(char a[]);
 
+// A function to check the strength of the password using a specific criteria
+
 int checking_strength(char a[])
 {
     int count = 0, star = 0;
@@ -106,8 +108,8 @@ int checking_strength(char a[])
     }
     if (l == 10 && m >= 2 && n >= 2 && o >= 2)
     {
-        int abcdefghij = prev_check(a);
-        if (abcdefghij != 3)
+        int e = prev_check(a);
+        if (e != 3)
         {
             printf("100%% strength\n");
             return 1;
@@ -123,6 +125,8 @@ int checking_strength(char a[])
         return 2;
     }
 }
+
+// This function generates a random password that meets the criteria for 100% strength
 
 void randomf(char a[])
 {
@@ -144,6 +148,7 @@ void randomf(char a[])
     a[8] = lower[rand() % 26];
     a[9] = special[rand() % 7];
 
+// this swaps any two characters randomly in the string so that the password is completely random
     int i = rand() % 10;
     int j = rand() % 10;
     char temp = a[i];
@@ -152,14 +157,17 @@ void randomf(char a[])
    
 }
 
+// This function checks if the generated strong password has not been generated previously by
+// checkin all the previously generated passwords from a file.
+
 int prev_check(char a[])
 {
     FILE *fp;
-    fp = fopen("prev_pass.txt", "r+");
+    fp = fopen("prev_pass.txt", "a+");
     if (fp == NULL)
     {
         printf("Unable to open the file\n");
-        return 3;
+        return 4;
     }
     else
     {
@@ -195,8 +203,8 @@ int main()
     if (b == 0 || b == 2)
     {
         randomf(a);
-        int yuiop = prev_check(a);
-        if (yuiop == 15)
+        int y = prev_check(a);
+        if (y == 15)
         {
             printf("New suggested password: ");
             printf("%s\n", a);
@@ -212,15 +220,19 @@ int main()
     {
         printf("Your password is strong.");
     }
+
+    // Loop to generate more than one password
+
     int play;
     printf("Enter 1 if you want to regenerate password else press 0 : ");
     scanf("%d", &play);
+
     while (play != 0)
     {
 
         randomf(a);
-        int yui = prev_check(a);
-        if (yui == 15)
+        int u = prev_check(a);
+        if (u == 15)
         {
             printf("New suggested password: ");
             printf("%s\n", a);
