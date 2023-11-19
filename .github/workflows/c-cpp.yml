@@ -17,8 +17,6 @@ jobs:
       run: gcc ICfinalpro.c -o ICfinalpro
     - name: run the code
       run: ./ICfinalpro
-    - name: configure
-      run: ./configure
     - name: make
       run: make
     - name: make check
