@@ -14,7 +14,7 @@ If the password does not meet the maximum robustness or has been generated previ
 
 ## Getting Started
 
-The code can be copied from the link given above into VSCode.
+The code is to be copied from the link given in the Google Classroom into VSCode. The text file prev_pass has to be downloaded on the system.
 
 ## Prerequisites
 
