@@ -75,7 +75,7 @@ int checking_strength(char a[])
             {
                 h++;
             }
-            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=')
+            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '='|| a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$'||a[i] == '*' || a[i] == '&' || a[i] == '^')
             {
                 k++;
             }
@@ -86,10 +86,10 @@ int checking_strength(char a[])
         printf("85%% strength\n");
         return 0;
     }
-    int l = 0, m = 0, n = 0, o = 0, p = 0;
+    int l = 0, m = 0, n = 0, o = 0;
     for (int i = 0; i < 10; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$')
+        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$'||a[i] == '*' || a[i] == '&' || a[i] == '^')
         {
             l++;
             if (islower(a[i]))
@@ -100,7 +100,7 @@ int checking_strength(char a[])
             {
                 n++;
             }
-            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$')
+            if ( a[i] == '*' || a[i] == '&' || a[i] == '^' || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$')
             {
                 o++;
             }
@@ -108,8 +108,8 @@ int checking_strength(char a[])
     }
     if (l == 10 && m >= 2 && n >= 2 && o >= 2)
     {
-        int e = prev_check(a);
-        if (e != 3)
+        int q = prev_check(a);
+        if (q != 3)
         {
             printf("100%% strength\n");
             return 1;
@@ -132,7 +132,7 @@ void randomf(char a[])
 {
     char lower[] = "abcdefghijklmnopqrstuvwxyz";
     char upper[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    char special[] = "?+-!@#$";
+    char special[] = "?+-!@#$^&*";
     char number[] = "0123456789";
 
     srand(time(NULL));
