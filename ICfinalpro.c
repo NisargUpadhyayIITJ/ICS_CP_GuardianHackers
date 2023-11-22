@@ -64,7 +64,7 @@ int checking_strength(char a[])
     int f = 0, g = 0, h = 0, k = 0;
     for (int i = 0; i < 10; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '='||a[i]=='@'||a[i]=='!'||a[i]=='#'||a[i]=='$'||a[i]=='^'||a[i]=='&'||a[i]=='*')
+        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
         {
             f++;
             if (islower(a[i]))
@@ -75,13 +75,13 @@ int checking_strength(char a[])
             {
                 h++;
             }
-            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '='||a[i]=='@'||a[i]=='!'||a[i]=='#'||a[i]=='$'||a[i]=='^'||a[i]=='&'||a[i]=='*')
+            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
             {
                 k++;
             }
         }
     }
-    if (f == 10 && g >= 1 && h >= 1 && k >= 1)
+    if (f == 10 && g >= 1 && h >= 1 && k <= 1)
     {
         printf("85%% strength\n");
         return 0;
@@ -89,7 +89,7 @@ int checking_strength(char a[])
     int l = 0, m = 0, n = 0, o = 0;
     for (int i = 0; i < 10; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$'||a[i]=='^'||a[i]=='&'||a[i]=='*')
+        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
         {
             l++;
             if (islower(a[i]))
@@ -100,7 +100,7 @@ int checking_strength(char a[])
             {
                 n++;
             }
-            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$'||a[i]=='^'||a[i]=='&'||a[i]=='*')
+            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
             {
                 o++;
             }
@@ -148,13 +148,12 @@ void randomf(char a[])
     a[8] = lower[rand() % 26];
     a[9] = special[rand() % 7];
 
-// this swaps any two characters randomly in the string so that the password is completely random
+    // this swaps any two characters randomly in the string so that the password is completely random
     int i = rand() % 10;
     int j = rand() % 10;
     char temp = a[i];
     a[i] = a[j];
     a[j] = temp;
-   
 }
 
 // This function checks if the generated strong password has not been generated previously by
@@ -178,7 +177,7 @@ int prev_check(char a[])
             fscanf(fp, "%s", temp_str);
             if (strcmp(a, temp_str) == 0)
             {
-                printf("The password generated has been already generated previously\n");
+                printf("The password entered/generated has been already generated previously\n");
                 found = 1;
                 return 3;
             }
@@ -196,55 +195,60 @@ int prev_check(char a[])
 int main()
 {
     char a[10];
-    printf("Enter Password: ");
-    scanf("%s", a);
+    int play = 1;
     int b;
-    b = checking_strength(a);
-    if (b == 0 || b == 2)
+    while (play == 1)
     {
-        randomf(a);
-        int y = prev_check(a);
-        if (y == 15)
+        printf("Enter Password: ");
+        scanf("%s", a);
+        b = checking_strength(a);
+        if (b == 0 || b == 2)
         {
-            printf("New suggested password: ");
-            printf("%s\n", a);
+            randomf(a);
+            int y = prev_check(a);
+            if (y == 15)
+            {
+                printf("New suggested password: ");
+                printf("%s\n", a);
+            }
+            else
+            {
+                randomf(a);
+                printf("New suggested password: ");
+                printf("%s\n", a);
+            }
         }
         else
         {
-            randomf(a);
-            printf("New suggested password: ");
-            printf("%s\n", a);
+            printf("Your password is strong.\n");
         }
-    }
-    else
-    {
-        printf("Your password is strong.");
-    }
 
-    // Loop to generate more than one password
+        // Loop to generate more than one password
 
-    int play;
-    printf("Enter 1 if you want to regenerate password else press 0 : ");
-    scanf("%d", &play);
+        printf("Enter 1 if you want to re-enter password\nEnter 2 if you want to re-generate the password\nEnter 0 to exit : ");
 
-    while (play != 0)
-    {
-
-        randomf(a);
-        int u = prev_check(a);
-        if (u == 15)
-        {
-            printf("New suggested password: ");
-            printf("%s\n", a);
-        }
-        else
-        {
-            randomf(a);
-            printf("New suggested password: ");
-            printf("%s\n", a);
-        }
-        printf("Enter 1 if you want to regenerate password else press 0 : ");
         scanf("%d", &play);
+
+        while (play == 2)
+        {
+            randomf(a);
+            int u = prev_check(a);
+            if (u == 15)
+            {
+                printf("New suggested password: ");
+                printf("%s\n", a);
+            }
+            else
+            {
+                randomf(a);
+                printf("New suggested password: ");
+                printf("%s\n", a);
+            }
+            printf("Enter 1 if you want to re-enter password\nEnter 2 if you want to re-generate the password\nEnter 0 : ");
+            scanf("%d", &play);
+        }
     }
+    printf("New password saved successfully and stored.");
+
     return 0;
 }
