@@ -23,7 +23,7 @@ int checking_strength(char a[])
         printf("50%% strength\n");
         return 0;
     }
-    int b = 0;
+    int b = 0,sun=0;
     for (int i = 0; i < 10; i++)
     {
         if (isdigit(a[i]) || islower(a[i]))
@@ -32,15 +32,19 @@ int checking_strength(char a[])
             {
                 star++;
             }
+            if (isdigit(a[i]))
+            {
+                sun++;
+            }
             b++;
         }
     }
-    if (b == 10 && star >= 1)
+    if (b == 10 && star >= 1 && sun>=1)
     {
         printf("65%% strength\n");
         return 0;
     }
-    int c = 0, d = 0, e = 0;
+    int c = 0, d = 0, e = 0,fr=0;
     for (int i = 0; i < 10; i++)
     {
         if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]))
@@ -54,14 +58,18 @@ int checking_strength(char a[])
             {
                 e++;
             }
+            if (isdigit(a[i]))
+            {
+                fr++;
+            }
         }
     }
-    if (c == 10 && d >= 1 && e >= 1)
+    if (c == 10 && d >= 1 && e >= 1 && fr>=1)
     {
         printf("75%% strength\n");
         return 0;
     }
-    int f = 0, g = 0, h = 0, k = 0;
+    int f = 0, g = 0, h = 0, hr = 0, k = 0;
     for (int i = 0; i < 10; i++)
     {
         if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
@@ -79,14 +87,18 @@ int checking_strength(char a[])
             {
                 k++;
             }
+            if (isdigit(a[i]))
+            {
+                hr++;
+            }
         }
     }
-    if (f == 10 && g >= 1 && h >= 1 && k <= 1)
+    if (f == 10 && g >= 1 && h >= 1 && hr>=1 && k <= 1)
     {
         printf("85%% strength\n");
         return 0;
     }
-    int l = 0, m = 0, n = 0, o = 0;
+    int l = 0, m = 0, n = 0, o = 0,p=0;
     for (int i = 0; i < 10; i++)
     {
         if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
@@ -104,9 +116,13 @@ int checking_strength(char a[])
             {
                 o++;
             }
+            if (isdigit(a[i]))
+            {
+                p++;
+            }
         }
     }
-    if (l == 10 && m >= 2 && n >= 2 && o >= 2)
+    if (l == 10 && m >= 2 && n >= 2 && o >= 2 && p >= 2)
     {
         int q = prev_check(a);
         if (q != 3)
