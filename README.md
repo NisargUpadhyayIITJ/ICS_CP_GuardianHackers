@@ -18,7 +18,7 @@ The code is to be copied from the link given in the Google Classroom into VSCode
 
 ## Prerequisites
 
-VSCode should be installed on the system.
+VSCode should be installed on the system. Use GCC compiler on windows to run and test the code.
 
 ## Usage
 
