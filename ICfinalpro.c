@@ -4,12 +4,25 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+
+// This function checks if the generated strong password has not been generated previously by
+// checkin all the previously generated passwords from a file.
 int prev_check(char a[]);
 
 // A function to check the strength of the password using a specific criteria
+int checking_strength(char a[]);
+
+// This function generates a random password that meets the criteria for 100% strength
+void randomf(char a[]);
+
+
 
 int checking_strength(char a[])
 {
+    // Criteria for different strength levels
+    // The function returns a strength level and prints a corresponding message
+
+    // Check for 50% strength
     int count = 0, star = 0;
     for (int i = 0; i < 10; i++)
     {
@@ -23,6 +36,8 @@ int checking_strength(char a[])
         printf("50%% strength\n");
         return 0;
     }
+
+    // Check for 65% strength
     int b = 0,sun=0;
     for (int i = 0; i < 10; i++)
     {
@@ -44,6 +59,8 @@ int checking_strength(char a[])
         printf("65%% strength\n");
         return 0;
     }
+
+    // Check for 75% strength
     int c = 0, d = 0, e = 0,fr=0;
     for (int i = 0; i < 10; i++)
     {
@@ -64,11 +81,14 @@ int checking_strength(char a[])
             }
         }
     }
+
     if (c == 10 && d >= 1 && e >= 1 && fr>=1)
     {
         printf("75%% strength\n");
         return 0;
     }
+
+    // Check for 85% strength
     int f = 0, g = 0, h = 0, hr = 0, k = 0;
     for (int i = 0; i < 10; i++)
     {
@@ -93,11 +113,14 @@ int checking_strength(char a[])
             }
         }
     }
+
     if (f == 10 && (g < 2 || h < 2 || hr < 2 || k < 2))
     {
         printf("85%% strength\n");
         return 0;
     }
+
+    // Check for 100% strength
     int l = 0, m = 0, n = 0, o = 0,p=0;
     for (int i = 0; i < 10; i++)
     {
@@ -122,6 +145,7 @@ int checking_strength(char a[])
             }
         }
     }
+
     if (l == 10 && m >= 2 && n >= 2 && o >= 2 && p >= 2)
     {
         int q = prev_check(a);
@@ -135,6 +159,8 @@ int checking_strength(char a[])
             return 0;
         }
     }
+
+    // Check for less than 50% strength
     else
     {
         printf("<50%% strength\n");
@@ -142,7 +168,6 @@ int checking_strength(char a[])
     }
 }
 
-// This function generates a random password that meets the criteria for 100% strength
 
 void randomf(char a[])
 {
@@ -172,8 +197,6 @@ void randomf(char a[])
     a[j] = temp;
 }
 
-// This function checks if the generated strong password has not been generated previously by
-// checkin all the previously generated passwords from a file.
 
 int prev_check(char a[])
 {
@@ -190,6 +213,7 @@ int prev_check(char a[])
         char temp_str[11];
         while (!feof(fp))
         {
+            // Check f the generated password has been generated previously
             fscanf(fp, "%s", temp_str);
             if (strcmp(a, temp_str) == 0)
             {
@@ -198,11 +222,15 @@ int prev_check(char a[])
                 return 3;
             }
         }
+
+        // If the password is unique, append it to the file
         if (!found)
         {
             fprintf(fp, "%s\n", a);
             return 15;
         }
+
+        // Close the file
         fclose(fp);
     }
     return 34;
@@ -260,7 +288,9 @@ int main()
                 printf("New suggested password: ");
                 printf("%s\n", a);
             }
-            printf("Enter 1 if you want to re-enter password\nEnter 2 if you want to re-generate the password\nEnter 0 : ");
+            printf("Enter 1 if you want to re-enter password\n");
+            printf("Enter 2 if you want to re-generate the password\n");
+            printf("Enter 0 : ");
             scanf("%d", &play);
         }
     }
