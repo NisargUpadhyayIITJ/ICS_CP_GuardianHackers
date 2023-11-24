@@ -26,4 +26,4 @@ This tool can be used by softwares and apps that require user login to provide s
 
 ## Features
 
-It creates a random password of maximum robustness that has not been generated previously.
+It creates a random password of maximum robustness that has not been generated previously. It also checks if the password entered has been generated previously and notifies and crafts a new password.
