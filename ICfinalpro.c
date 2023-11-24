@@ -47,14 +47,14 @@ int checking_strength(char a[])
     int c = 0, d = 0, e = 0,fr=0;
     for (int i = 0; i < 10; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]))
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]))
         {
             c++;
             if (islower(a[i]))
             {
                 d++;
             }
-            if (isalpha(a[i]))
+            if (isupper(a[i]))
             {
                 e++;
             }
@@ -72,14 +72,14 @@ int checking_strength(char a[])
     int f = 0, g = 0, h = 0, hr = 0, k = 0;
     for (int i = 0; i < 10; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
         {
             f++;
             if (islower(a[i]))
             {
                 g++;
             }
-            if (isalpha(a[i]))
+            if (isupper(a[i]))
             {
                 h++;
             }
@@ -93,7 +93,7 @@ int checking_strength(char a[])
             }
         }
     }
-    if (f == 10 && g >= 1 && h >= 1 && hr>=1 && k <= 1)
+    if (f == 10 && (g < 2 || h < 2 || hr < 2 || k < 2))
     {
         printf("85%% strength\n");
         return 0;
@@ -101,14 +101,14 @@ int checking_strength(char a[])
     int l = 0, m = 0, n = 0, o = 0,p=0;
     for (int i = 0; i < 10; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isalpha(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
         {
             l++;
             if (islower(a[i]))
             {
                 m++;
             }
-            if (isalpha(a[i]))
+            if (isupper(a[i]))
             {
                 n++;
             }
