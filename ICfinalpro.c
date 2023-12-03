@@ -62,7 +62,8 @@ int checking_strength(char a[],int size)
     // Check for 50% strength
     for (int i = 0; i < size; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || isspecial(a[i]))
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || isspecial(a[i])){
+            if(islower(a[i]))
             {
                 small_alphabet++;
             }
@@ -78,6 +79,7 @@ int checking_strength(char a[],int size)
             {
                 special++;
             }
+        }
     }
     if (digit >= 10 && small_alphabet == 0 && big_alphabet == 0 && special == 0)
     {
