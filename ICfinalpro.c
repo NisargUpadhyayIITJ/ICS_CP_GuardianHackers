@@ -84,6 +84,8 @@ int checking_strength(char a[],int size)
         printf("50%% strength\n");
         return 0;
     }
+    small_alphabet = 0;
+    big_alphabet = 0;
     digit = 0;
     special = 0;
     // Check for 65% strength
