@@ -24,15 +24,32 @@ character type should be represented at least twice.*/
 #include <stdlib.h>
 
 
+// A function to check the strength of the password using a specific criteria
+int checking_strength(char a[], int size);
+
 // This function checks if the generated strong password has not been generated previously by
 // checkin all the previously generated passwords from a file.
 int prev_check(char a[]);
 
-// A function to check the strength of the password using a specific criteria
-int checking_strength(char a[], int size);
-
 // This function generates a random password that meets the criteria for 100% strength
 void randomf(char a[],int n);
+
+//This function checks whether a given character is a special character or not.
+int isspecial(char ch);
+
+
+
+int isspecial(char ch)
+{
+    if(ch == '?' || ch == '-' || ch == '+' || ch == '=' || ch == '!' || ch == '@' || ch == '#' || ch == '$' || ch == '^' || ch == '&' || ch == '*')
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
 
 
 
@@ -45,16 +62,24 @@ int checking_strength(char a[],int size)
     // Check for 50% strength
     for (int i = 0; i < size; i++)
     {
-        if (isdigit(a[i]))
-        {
-            digit++;
-        }
-        if(islower(a[i]) || isupper(a[i])|| a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
-        {
-            special++;
-        }
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || isspecial(a[i]))
+            {
+                small_alphabet++;
+            }
+            if (isupper(a[i]))
+            {
+                big_alphabet++;
+            }
+            if (isdigit(a[i]))
+            {
+                digit++;
+            }
+            if (isspecial(a[i]))
+            {
+                special++;
+            }
     }
-    if (digit >= 10 && special ==0)
+    if (digit >= 10 && small_alphabet == 0 && big_alphabet == 0 && special == 0)
     {
         printf("50%% strength\n");
         return 0;
@@ -65,36 +90,41 @@ int checking_strength(char a[],int size)
     int b = 0;
     for (int i = 0; i < size; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || isspecial(a[i]))
         {
             if (islower(a[i]))
             {
                 small_alphabet++;
             }
+            if (isupper(a[i]))
+            {
+                big_alphabet++;
+            }
             if (isdigit(a[i]))
             {
                 digit++;
             }
-            if(isupper(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+            if (isspecial(a[i]))
             {
-                special++; 
+                special++;
             }
             b++;
         }
     }
-    if (b >= 10 && small_alphabet >= 1 && digit >=1 && special == 0)
+    if (b >= 10 && small_alphabet >= 1 && digit >=1 && big_alphabet == 0 && special == 0)
     {
         printf("65%% strength\n");
         return 0;
     }
     small_alphabet = 0;
+    big_alphabet = 0;
     digit = 0;
     special = 0;
     // Check for 75% strength
     int c = 0;
     for (int i = 0; i < size; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || isspecial(a[i]))
         {
             c++;
             if (islower(a[i]))
@@ -109,7 +139,7 @@ int checking_strength(char a[],int size)
             {
                 digit++;
             }
-            if(a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+            if (isspecial(a[i]))
             {
                 special++;
             }
@@ -129,7 +159,7 @@ int checking_strength(char a[],int size)
     int f = 0;
     for (int i = 0; i < size; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || isspecial(a[i]))
         {
             f++;
             if (islower(a[i]))
@@ -140,7 +170,7 @@ int checking_strength(char a[],int size)
             {
                 big_alphabet++;
             }
-            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '@' || a[i] == '!' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+            if (a[i]=='?' || a[i]=='+' || a[i]=='=' || a[i]=='-') //As per the problem statement
             {
                 special++;
             }
@@ -165,7 +195,7 @@ int checking_strength(char a[],int size)
     int l = 0;
     for (int i = 0; i < size; i++)
     {
-        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+        if (isdigit(a[i]) || islower(a[i]) || isupper(a[i]) || isspecial(a[i]))
         {
             l++;
             if (islower(a[i]))
@@ -176,7 +206,8 @@ int checking_strength(char a[],int size)
             {
                 big_alphabet++;
             }
-            if (a[i] == '?' || a[i] == '-' || a[i] == '+' || a[i] == '=' || a[i] == '!' || a[i] == '@' || a[i] == '#' || a[i] == '$' || a[i] == '^' || a[i] == '&' || a[i] == '*')
+            if (a[i]=='?' || a[i]=='+' || a[i]=='=' || a[i]=='-' || a[i]=='!' || a[i]=='@' || a[i]=='#' || a[i]=='$')
+            //As per the PS
             {
                 special++;
             }
@@ -214,13 +245,13 @@ void randomf(char a[],int n)
 {
     char lower[] = "abcdefghijklmnopqrstuvwxyz";
     char upper[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    char special[] = "?+-!@#$^&*";
+    char special[] = "?+=-!@#$";
     char number[] = "0123456789";
 
     srand(time(NULL));
 
     a[0] = lower[rand() % 26];
-    a[1] = special[rand() % 10];
+    a[1] = special[rand() % 8];
     a[2] = upper[rand() % 26];
     a[3] = number[rand() % 10];
     a[4] = lower[rand() % 26];
@@ -228,21 +259,20 @@ void randomf(char a[],int n)
     a[6] = upper[rand() % 26];
     a[7] = number[rand() % 10];
     a[8] = lower[rand() % 26];
-    a[9] = special[rand() % 10];
+    a[9] = special[rand() % 8];
     for(int k=10;k<n;k++)
     {
         a[k]='\0';
     }
 
     // this swaps any two characters randomly in the string so that the password is completely random
-    for(int k=0;k<4;k++)
-    {
+    
         int i = rand() % 10;
         int j = rand() % 10;
         char temp = a[i];
         a[i] = a[j];
         a[j] = temp;
-    }
+    
     
 }
 
@@ -285,11 +315,14 @@ int prev_check(char a[])
     return 34;
 }
 
+
+
+
+
 int main()
 {
     char a[100];
     int play = 1;
-    int b;
     while (play == 1)
     {
         printf("Enter Password: ");
@@ -302,7 +335,7 @@ int main()
             scanf("%s",a);
             size = strlen(a);
         }
-        b = checking_strength(a,size);
+        int b = checking_strength(a,size);
         if (b == 0 || b == 2)
         {
             randomf(a,size);
@@ -326,7 +359,9 @@ int main()
 
         // Loop to generate more than one password
 
-        printf("Enter 1 if you want to re-enter password\nEnter 2 if you want to re-generate the password\nElse any other number to exit: ");
+        printf("Enter 1 if you want to re-enter password\n");
+        printf("Enter 2 if you want to re-generate the password\n");
+        printf("Else any other number to exit: ");
 
         scanf("%d", &play);
 
@@ -357,3 +392,4 @@ int main()
 
     return 0;
 }
+
